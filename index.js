@@ -24,6 +24,7 @@ app.all("*", async (req, res) => {
 });
 
 const startServer = (port) => {
+    console.log("🚀 ~ startServer ~ port:", port)
     console.log(`Server Started on port ${port}`);
     child_process.exec(
         `node ${process.env.SERVER_PATH} --port=${port}`,
@@ -41,6 +42,7 @@ const startServer = (port) => {
 const startAllServers = () => {
     for (let i = 1; i <= NumberOfServers; i++) {
         const serverNumber = serverPort + i;
+        console.log("🚀 ~ startAllServers ~ serverNumber:", serverNumber)
         axios
             .get(`${process.env.URL}:${serverNumber}/status`)
             .then((res) => {
